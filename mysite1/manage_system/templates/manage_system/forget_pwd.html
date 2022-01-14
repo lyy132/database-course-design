@@ -1,0 +1,62 @@
+<!-- {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<h1 style="text-align: center">重设密码</h1>
+<form method="post" class="form-validate" action="{% url 'manage_system:resetpwd' %}">
+    <div class="form-group">
+        <label for="id_username" style="text-align: center">用户名:</label>
+        <input type="text" name='username' class="form-control" id="id_username" placeholder="Username" autofocus required>
+    </div>
+    <div class="form-group">
+        <label for="newpassword" style="text-align: center">输入新密码:</label>
+        <input type="text" name='newpassword' class="form-control" id="id_userpassword" placeholder="NewPassword" autofocus required>
+    </div>
+    <div class="form-group">
+        <label for="newpassword2" style="text-align: center">再次输入新密码：</label>
+        <input type="text" name='newpassword2' class="form-control" id="id_userpassword2" placeholder="NewPassword Again" autofocus required>
+    </div>
+     {% csrf_token %}
+     <button type="reset" id="login" rel="external nofollow" class="btn btn-default">重置</button>
+     <button type="submit" id="login" rel="external nofollow" class="btn btn-primary">确认</button>
+     This should be submit button but I replaced it with <a> for demo purposes
+</form>
+-->
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>重设密码</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #buttons{
+            text-align:center
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{% url 'manage_system:pwd_resetnew' %}" method="post" class="forget-password-form">
+        {% csrf_token %}
+        <h2 style="text-align: center">重设密码</h2>
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">请输入用户名：</span></div></h5>        
+        <input type="text" name="username" placeholder="输入用户名，我们会发送邮件到注册时的邮箱中" class="form-control" />
+        <br>
+        <div id="buttons">
+        <button type="submit" class="btn btn-primary">提交</button>  
+        <br>
+        <br>
+        <a href="{% url 'manage_system:login' %}" class="forget-password-tips">回到登录页面</a>                  
+        </div>
+
+
+    </form>
+</body>
+</html>

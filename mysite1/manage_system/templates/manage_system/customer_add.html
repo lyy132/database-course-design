@@ -1,0 +1,36 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<h1 style="text-align: center">添加客户信息</h1>
+<div>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:customer_insert' %}" method="POST">
+    <div class="form-group" style="width: 100%">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">客户ID</span></div></h5>
+      <input type="text" name="ID" class="form-control" id="ID" placeholder="请输入客户ID">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">客户名</span></div></h5>
+        <input type="text" name="name" class="form-control" id="name" placeholder="请输入客户名">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">客户类型</span></div></h5>
+        <input type="text" name="type" class="form-control" id="type" placeholder="请输入客户类型">
+       <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">联系人</span></div></h5> 
+        <input type="text" name="contactor" class="form-control" id="contactor" placeholder="请输入联系人">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">联系电话</span></div></h5>
+        <input type="text" name="tele" class="form-control" id="tele" placeholder="请输入联系电话">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">地址</span></div></h5>
+        <input type="text" name="address" class="form-control" id="address" placeholder="请输入地址ַ">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">备注</span></div></h5>
+        <input type="text" name="notes" class="form-control" id="notes" placeholder="请输入备注">
+        <button type="reset" class="btn btn-primary">重置</button>
+        <button type="submit" class="btn btn-primary">提交</button>          
+    </div>
+</form>  
+</div>  
+
+
+  
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<br>
+<h2 style="text-align: center">添加产品信息</h2>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:product_insert' %}" method="POST">
+    <div class="form-group">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品编号</span></div></h5>
+      <input type="text" name="ID" class="form-control" id="ID" placeholder="请输入产品编号">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品名</span></div></h5>
+        <input type="text" name="name" class="form-control" id="name" placeholder="请输入产品名">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品规格</span></div></h5>
+        <input type="text" name="size" class="form-control" id="size" placeholder="请输入产品规格">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品价格</span></div></h5>
+        <input type="text" name="values" class="form-control" id="values" placeholder="请输入产品价格">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品最少数目</span></div></h5>
+        <input type="text" name="leastcount" class="form-control" id="leastcount" placeholder="请输入产品最少数目">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品最多数目</span></div></h5>
+        <input type="text" name="maxcount" class="form-control" id="maxcount" placeholder="请输入产品最多数目">
+      <div>
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">仓库编号</span></div></h5>
+      <div>&nbsp;&nbsp;
+        <select name="storageid">
+          <option value="请选择">请选择</option>
+          {% for storages in storage %}
+          <option>{{storages.storage_id}} {{storages.storage_name}}</option>
+          {% endfor %}
+      </select> 
+      </div>         
+      </div>
+
+      <br>
+        <button type="reset" class="btn btn-primary">重置</button>
+        <button type="submit" class="btn btn-primary">提交</button>          
+    </div>
+</form>
+  
+{% endblock %}

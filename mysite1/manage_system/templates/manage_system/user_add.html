@@ -1,0 +1,37 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<br>
+<h2 style="text-align:center">添加用户</h2>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:user_insert' %}" method="POST">
+    <div class="form-group">
+      <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">用户名</span></div></h5>
+        <input type="text" name="name" class="form-control" id="name" placeholder="请输入用户名">
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">密码</span></div></h5>
+        <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">邮箱</span></div></h5>
+        <input type="email" name="email" class="form-control" id="email" placeholder="请输入邮箱">
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">用户权限</span></div></h5>
+        <div>&nbsp;&nbsp;&nbsp;
+          <select name="type">
+                <option>普通用户</option>
+                <option>管理员</option>
+        </select>
+        </div>
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">备注</span></div></h5>
+        <input type="text" name="notes" class="form-control" id="notes" placeholder="请输入备注">
+        <div>&nbsp;&nbsp;&nbsp;
+      <button type="reset" class="btn btn-primary">重置</button>
+      <button type="submit" class="btn btn-primary">提交</button>             
+        </div>
+       
+    </div>
+</form>
+  
+{% endblock %}

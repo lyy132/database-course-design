@@ -1,0 +1,47 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<h2 style="text-align: center">产品信息修改</h2>
+<br>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:product_update' product.product_id %}" method="POST">
+    <div class="form-group">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品编号</span></div></h5>
+        <input type="text" name="ID" value="{{product.product_id}}" class="form-control" id="ID" placeholder="请输入客户ID" readonly='readonly'>
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品名</span></div></h5>
+        <input type="text" name="name" value="{{product.product_name}}" class="form-control" id="name" placeholder="请输入客户名" readonly='readonly'>
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品规格</span></div></h5>
+        <input type="text" name="size" class="form-control" value={{product.product_size}} id="size" placeholder="请输入客户类型" readonly='readonly'>
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品价格</span></div></h5>
+        <input type="text" name="values" class="form-control" id="values" placeholder="请输入产品价格">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品最少数目</span></div></h5>
+        <input type="text" name="lnum" class="form-control" id="lnum" placeholder="请输入产品最少数目">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">产品最多数目</span></div></h5>
+        <input type="text" name="mnum" class="form-control" id="mnum" placeholder="请输入产品最多数目ַ">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">所在仓库</span></div></h5>
+        <div>&nbsp;&nbsp;&nbsp;
+          <select name="storage">
+            <option value="请选择">请选择</option>
+            {% for ss in storage %}
+            <option>
+                {{ss.storage_id}} {{ss.storage_name}}
+            </option>
+            {% endfor %}
+        </select>
+        </div>
+        <br>
+        <div>
+          &nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn btn-primary">重置</button>
+        <button type="submit" class="btn btn-primary">提交</button>            
+        </div>
+        
+    </div>
+</form>
+  
+{% endblock %}

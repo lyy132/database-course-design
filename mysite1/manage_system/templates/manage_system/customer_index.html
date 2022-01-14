@@ -1,0 +1,100 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"></link>
+    <script type="text/javascript" src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+    <!--bootstrap插件-->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!--分页插件-->
+    <script type="text/javascript" src="{% static 'js/bootstrap-paginator.js' %}"></script>
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--模板插件-->
+</head>
+<br><br>
+<div class="form-group">
+         <center>
+            <h1>客户信息页面</h1>
+            <!--<input type="text" name="q" class="form-control" placeholder="customer_id">-->            
+         </center>   
+</div>
+<br>
+<div style="width:100%;text-align:center">
+  <form  action="{% url 'manage_system:customer_show' 1 %}" method="get">
+    <div class="col-lg-6" style="width:30%;text-align:center">
+      <div class="input-group">
+      <input type="text" name="keyword" class="form-control" placeholder="客户ID或客户名...">
+      <span class="input-group-btn">
+      <button class="btn btn-default" type="submit">搜索</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->    
+  </form>
+</div>
+<form action="{% url 'manage_system:customer_add' %}" method="GET">
+  <button type="submit" class="btn btn-primary">添加客户信息</button> 
+</form> 
+
+
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>客户ID</th>
+            <th>客户名</th>
+            <th>客户类型</th>
+            <th>联系人</th>
+            <th>电话</th>
+            <th>地址</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{user.customer_id}}</td>
+            <td>{{user.customer_name}}</td>
+            <td>{{user.customer_type}}</td>
+            <td>{{user.contactor}}</td>
+            <td>{{user.tele}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.notes}}</td>
+            <form action="{% url 'manage_system:customer_edit' user.customer_id %}" method="POST">
+                <td><button class="btn btn-warning">修改</button></td>             
+            </form>
+            <form action="{% url 'manage_system:customer_delete' user.customer_id %}" method="POST">    
+                <td>
+                <button type="submit" class="btn btn-warning">删除</button></td>                  
+            </form>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center">
+            <nav aria-label="Page navigation" alignment="right">
+                <ul class="pagination">
+                   <li>
+                      <a href="{% url 'manage_system:customer_show' pIndex|add:-1 %}?{{mywhere|join:'&'}}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                        {% for p in plist %}
+                    <li {% if p == pIndex %}class="active" {% endif %}><a href="{% url 'manage_system:customer_show' p %}?{{mywhere|join:'&'}}">{{p}}</a></li>
+                        {% endfor %}
+                    <li>
+                      <a href="{% url 'manage_system:customer_show' pIndex|add:1 %}?{{mywhere|join:'&'}}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                  </ul>
+              </nav>  
+</div>
+
+  <script src="https://cdn.jsdeliver.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdeliver.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+

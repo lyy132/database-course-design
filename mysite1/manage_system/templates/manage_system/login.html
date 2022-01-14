@@ -1,0 +1,49 @@
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      #tips{
+        text-align: center
+      }
+    </style>
+{% endblock %}
+
+{% block content %}
+<center>
+     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <br>
+          <br>
+          <br>
+          <form class='form-login' action="{% url 'manage_system:login' %}" method="post">
+            {% csrf_token %}
+              <h2 class="text-center">欢迎登录</h2>
+              <div class="form-group">
+                <label for="id_username">用户名:</label>
+                <input type="text" name='username' class="form-control" id="id_username" placeholder="Username" autofocus required>
+              </div>
+              <div class="form-group">
+                <label for="id_password">密码:</label>
+                <input type="password" name='password' class="form-control" id="id_password" placeholder="Password" required>
+              </div>
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+          </form>
+          <form class="register" action="{% url 'manage_system:register' %}" method="GET">
+              <button type="submit" class="btn btn-warning">注册</button>
+          </form>
+        </div>
+    </div> <!-- /container -->
+</center>
+<div id="tips">
+<a href="{% url 'manage_system:pwd_resetnew' %}">忘记密码？</a>  
+<label>{{msg}}</label>
+</div>
+
+
+{% endblock %}

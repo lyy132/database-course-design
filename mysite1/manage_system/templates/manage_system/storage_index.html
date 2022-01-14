@@ -1,0 +1,83 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<br><br>
+<h1 style="text-align: center">仓库信息页面</h1>
+
+<br>
+<div style="width:50%;text-align:center">
+<form  action="{% url 'manage_system:storage_show' 1 %}" method="get">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" name="keyword" class="form-control" placeholder="仓库编码或仓库名...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">搜索</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->    
+</form>
+</div>
+<form action="{% url 'manage_system:storage_add' %}" method="POST">
+    <div>
+        <button class="btn btn-primary" type="submit">
+            添加仓库信息
+        </button>
+    </div>
+
+</form>
+
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>仓库编号</th>
+            <th>仓库名</th>
+            <th>仓库信息</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ss in list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ss.storage_id}}</td>
+            <td>{{ss.storage_name}}</td>
+            <td>{{ss.storage_info}}</td>
+            <form action="{% url 'manage_system:storage_edit' ss.storage_id %}" method="POST">
+                <td><button class="btn btn-warning">修改</button></td>             
+            </form>
+            <form action="{% url 'manage_system:storage_delete' ss.storage_id %}" method="POST">    
+                <td>
+                <button type="submit" class="btn btn-warning">删除</button></td>                  
+            </form>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center">
+    <nav aria-label="Page navigation" alignment="right">
+        <ul class="pagination">
+           <li>
+              <a href="{% url 'manage_system:storage_show' pIndex|add:-1 %}?{{mywhere|join:'&'}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+                {% for p in plist %}
+            <li {% if p == pIndex %}class="active" {% endif %}><a href="{% url 'manage_system:storage_show' p %}?{{mywhere|join:'&'}}">{{p}}</a></li>
+                {% endfor %}
+            <li>
+              <a href="{% url 'manage_system:storage_show' pIndex|add:1 %}?{{mywhere|join:'&'}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+          </ul>
+      </nav>  
+</div>
+
+<script src="https://cdn.jsdeliver.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdeliver.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>

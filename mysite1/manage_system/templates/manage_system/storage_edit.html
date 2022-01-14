@@ -1,0 +1,25 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<br>
+<h2 style="text-align: center">仓库信息修改</h2>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:storage_update' storage.storage_id %}" method="POST">
+    <div class="form-group">
+      <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">仓库ID</span></div></h5>
+        <input type="text" name="ID" value="{{storage.storage_id}}" class="form-control" id="ID" placeholder="请输入客户ID" readonly="readonly">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">仓库名</span></div></h5>
+        <input type="text" name="name" value="{{storage.storage_name}}" class="form-control" id="name" placeholder="请输入客户名" readonly="readonly">
+        <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">仓库信息</span></div></h5>
+        <input type="text" name="snotes" class="form-control" id="snotes" placeholder="请输入仓库信息">
+        <button type="reset" class="btn btn-primary">重置</button>
+        <button type="submit" class="btn btn-primary">提交</button>          
+    </div>
+</form>
+  
+{% endblock %}

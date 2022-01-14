@@ -1,0 +1,39 @@
+{% load static %}
+{% block mainbody %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<h2 style="text-align: center">用户权限管理</h2>
+<br>
+<form class="form-horizontal" role="form" action="{% url 'manage_system:user_update' user.id %}" method="POST">
+    <div class="form-group">
+      <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">用户ID</span></div></h5>
+      <input type="text" name="ID" value="{{user.id}}" class="form-control" id="ID" readonly="readonly">
+        <h5><div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">用户名</span></div></h5>
+        <input type="text" name="name" value="{{user.username}}" class="form-control" id="name" readonly="readonly">
+        <div>
+          <h5><div>我&nbsp;&nbsp;&nbsp;<span class="label label-info" style="text-align: center">用户类型</span></div></h5><br>
+       <div>&nbsp;&nbsp;&nbsp;
+          <select name="user_type">
+            <option>普通用户</option>
+            <option>管理员</option>
+        </select>          
+       </div>
+           
+        </div>
+        <br>
+        <div>
+          &nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn btn-primary">重置</button>
+        <button type="submit" class="btn btn-primary">提交</button>           
+        </div>
+         
+    </div>
+</form>  
+
+  
+{% endblock %}
